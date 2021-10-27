@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--link to google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600&family=Montserrat+Alternates:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!--link to font awesome-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!--link style sheet-->
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Country Journal App</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="hamburger-menu">
+        <div class="line line-1"></div>
+        <div class="line line-2"></div>
+        <div class="line line-3"></div>
+      </div>
+      <div class="navbar-menu">
+        <a href="index.html" class="navbar-link">Home</a>
+        <a href="journals.html" class="navbar-link">Journals</a>
+      </div>
+    </nav>
+    <!-- Container -->
+    <div class="container">
+      <h1 class="page-title">Which country have you been?</h1>
+      <h2 class="page-sub-title">
+        Mark your favorite and write journals while on trip!
+      </h2>
+      <form class="input-detail" id="form">
+        <input type="text" placeholder="Search..." id="search-input" />
+      </form>
+      <div class="filter-toggles">
+        <button class="filter-toggle" id="display-all">Display All</button>
+        <span class="break"> / </span>
+        <button class="filter-toggle" id="show-favorite">Show favorite</button>
+      </div>
+      <!-- Country Container -->
+      <div class="country-container" id="country-container"></div>
+    </div>
+    <footer>
+      <p class="footer-text">Designed and developed by Yumi Machino.</p>
+    </footer>
+    <script src="../js/index.bundle.js"></script>
+  </body>
+</html>

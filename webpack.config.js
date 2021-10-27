@@ -1,7 +1,7 @@
 module.exports = {
   // モード値を production に設定すると最適化された状態で、
   // development に設定するとソースマップ有効でJSファイルが出力される
-  mode: "production",
+  mode: "development",
 
   // メインとなるJavaScriptファイル（エントリーポイント）
 
@@ -30,6 +30,7 @@ module.exports = {
                 // プリセットを指定することで、ES2021 を ES5 に変換
                 "@babel/preset-env",
               ],
+              plugins: ["@babel/plugin-transform-runtime"],
             },
           },
         ],
