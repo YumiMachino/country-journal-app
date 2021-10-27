@@ -1,4 +1,4 @@
-import { test } from "./component/test";
+import { temp } from "./component/test";
 
 const sample = "hi";
-test(sample);
+temp(sample);
