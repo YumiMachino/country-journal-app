@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600&family=Montserrat+Alternates:wght@200;300;400;500;600;700&display=swap");
+
 /*
 Variables
 */
@@ -31,7 +33,9 @@ Common Styles
   font-family: var(--main-font);
   overflow-x: hidden;
 }
-
+input {
+  outline: none;
+}
 img {
   width: 100%;
   height: 100%;
@@ -222,7 +226,8 @@ input::placeholder {
   transition: all 0.1s;
 }
 
-.filter-toggle:hover {
+.filter-toggle:hover,
+.filter-toggle.active {
   color: var(--tertiary-color);
   transform: scale(1.1);
 }
@@ -305,10 +310,6 @@ footer {
   height: 40px;
   text-align: center;
   color: var(--light-color);
-  /* position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%); */
 }
 
 /*
@@ -435,8 +436,6 @@ journal
   display: flex;
   height: 250px;
   overflow: auto;
-  /* height: 200px;
-  overflow: hidden; */
 }
 
 .input-wrapper {
@@ -461,9 +460,6 @@ journal
   align-items: center;
 }
 
-/* .journal-img-container {
-  overflow: hidden;
-} */
 .journal-text {
   height: 100%;
   padding: 1rem;
@@ -475,10 +471,6 @@ journal
 .journal-title {
   font-size: 1rem;
 }
-/* .journal-date {
-  /* width: 100%; */
-/* margin: 0;
-} */
 
 .journal-para {
   font-weight: 300;
@@ -490,7 +482,6 @@ journal
 /*
 edit modal
 */
-
 .edit-modal-content {
   width: 600px;
   background-color: var(--light-color);

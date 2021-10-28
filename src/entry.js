@@ -47,7 +47,6 @@ function fetchFlagFromCountry() {
 
 async function fetchFlag(url) {
   const res = await fetch(url);
-  console.log("response status: ", res.status);
   if (!res.ok) {
     const message = `An error has occured: ${res.status}`;
     console.log(message);
@@ -80,7 +79,6 @@ function createJournal(country, emoji, date, title, body) {
   alert("New item has been added.");
   createModal.style.display = "none";
   allJournals = Store.getAllJournals();
-  console.log("all journals: ", allJournals);
   UI.displayAllJournals(allJournals);
   UI.displayEmojis(allJournals);
 }
@@ -101,13 +99,12 @@ window.addEventListener("load", () => {
 
 // Event Handler
 journalWrapper.addEventListener("click", (e) => {
-  console.log("clicked", e.target.id, e.target.tagName);
-  //要素がbuttonか確認
+  //Check element tagname
   if (e.target.tagName === "BUTTON") {
     const btnEle = e.target.id.split("-")[0];
     if (btnEle === "edit") {
       const editId = Number(e.target.id.split("-")[1]);
-      // country classのid確認してmodalを開く
+      // Open modal by checking country class id
       const modal = document.getElementById(`edit-modal-${editId}`);
       modal.style.display = "block";
     } else if (btnEle === "delete") {
@@ -119,10 +116,10 @@ journalWrapper.addEventListener("click", (e) => {
       UI.displayAllJournals(allJournals);
       UI.displayEmojis(allJournals);
     } else {
-      //   idをGet, Storeからそのidと一致するjournalを持ってくる
+      // Get id and get a journal with correspond id
       const targetId = e.target.parentElement.parentElement.id.split("-")[2];
       const country = e.target.parentElement.dataset.country;
-      // 新しい情報をゲットしてオブジェクトを作る
+      // Create new object by getting new information
       let title = document.getElementById(`title-${targetId}`).value;
       let date = document.getElementById(`date-${targetId}`).value;
       let text = document.getElementById(`text-${targetId}`).value;
@@ -138,7 +135,7 @@ journalWrapper.addEventListener("click", (e) => {
       UI.displayAllJournals(allJournals);
     }
   }
-  // modalのcloseクラスの場合はその親のmodalのidを確認してクローズ
+  // Close modal by checking close btn's parent modal id
   if (e.target.tagName === "SPAN") {
     if (e.target.id === "new-close") {
       createModal.style.display = "none";

@@ -31,12 +31,10 @@ window.addEventListener("load", () => {
 async function fetchCountries(url) {
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data);
   showCountries(data);
 }
 
 function showCountries(countries) {
-  // console.log(countries);
   let count = 0;
   countries.forEach((country) => {
     const {
@@ -145,7 +143,6 @@ function showCountries(countries) {
       false,
       []
     );
-    console.log("obj: ", countryObj);
     // add to storage
     Store.addCountry(countryObj);
     count++;
@@ -156,7 +153,6 @@ function showCountries(countries) {
 countryContainer.addEventListener("click", (e) => {
   // Open modal
   if (e.target.tagName === "BUTTON") {
-    console.log("button is clicked");
     const btnId = Number(e.target.id.split("-")[1]);
     const modal = document.getElementById(`modal-${btnId}`);
     modal.style.display = "block";
@@ -179,20 +175,33 @@ countryContainer.addEventListener("click", (e) => {
       countries[countryId].favorite = true;
     }
     Store.updateCountries(countries);
+    if (favoritePage) {
+      const favorites = Store.getAllFavorites();
+      UI.displayCountries(favorites);
+    }
   }
 });
 
+let favoritePage = false;
 // Toggle display all vs show favorite
 const displayAll = document.getElementById("display-all");
 const showFavorite = document.getElementById("show-favorite");
-displayAll.addEventListener("click", () => {
+displayAll.addEventListener("click", (e) => {
+  e.target.classList.add("active");
+  const favToggle = e.target.nextElementSibling.nextElementSibling;
+  favToggle.classList.remove("active");
   // Fetch from local storage
   const countries = Store.getAllCountries();
   UI.displayCountries(countries);
+  favoritePage = false;
 });
-showFavorite.addEventListener("click", () => {
+showFavorite.addEventListener("click", (e) => {
+  e.target.classList.add("active");
+  const allToggle = e.target.previousElementSibling.previousElementSibling;
+  allToggle.classList.remove("active");
   const favorites = Store.getAllFavorites();
   UI.displayCountries(favorites);
+  favoritePage = true;
 });
 
 // Search Event Handler

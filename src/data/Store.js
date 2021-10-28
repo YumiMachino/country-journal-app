@@ -1,6 +1,7 @@
 // Store Class: handles local storage
 
 export default class Store {
+  // get all countries from storage
   static getAllCountries() {
     if (localStorage.getItem("countries") === null) {
       this.allCountries = [];
@@ -9,18 +10,18 @@ export default class Store {
     }
     return this.allCountries;
   }
-
+  // add a country to storage
   static addCountry(country) {
     this.allCountries = Store.getAllCountries();
     this.allCountries.push(country);
     // reset storage
     localStorage.setItem("countries", JSON.stringify(this.allCountries));
   }
-
+  // update storage
   static updateCountries(countries) {
     localStorage.setItem("countries", JSON.stringify(countries));
   }
-
+  // get all favorite countries
   static getAllFavorites() {
     this.allCountries = this.getAllCountries();
     const favorites = this.allCountries.filter(
@@ -29,7 +30,7 @@ export default class Store {
     return favorites;
   }
 
-  // get journals
+  // get all journals
   static getAllJournals() {
     if (localStorage.getItem("journals") === null) {
       this.allJournals = [];
@@ -38,7 +39,7 @@ export default class Store {
     }
     return this.allJournals;
   }
-  // add journals
+  // add a journal
   static addJournal(journal) {
     this.allJournals = Store.getAllJournals();
     this.allJournals.push(journal);
@@ -50,6 +51,7 @@ export default class Store {
     localStorage.setItem("journals", JSON.stringify(journals));
   }
 
+  // update a journal
   static updateJournal(editedJournal) {
     this.allJournals = Store.getAllJournals();
     // let origJournal;
@@ -65,7 +67,7 @@ export default class Store {
     localStorage.setItem("journals", JSON.stringify(this.allJournals));
   }
 
-  // delete journals
+  // delete a journal
   static deleteJournal(journal) {
     this.allJournals = Store.getAllJournals();
 
@@ -76,7 +78,7 @@ export default class Store {
     localStorage.setItem("journals", JSON.stringify(filtered));
   }
 
-  // unique idにしなければいけない！
+  // get unique new id
   static getNewId() {
     const randomId = [...Array(100).keys()]
       .sort(() => Math.random() * 3 - 1)
@@ -85,6 +87,7 @@ export default class Store {
     return Number(randomId);
   }
 
+  // return journal by its id
   static getJournalById(id) {
     let targetJournal;
     this.allJournals = Store.getAllJournals();
