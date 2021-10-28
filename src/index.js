@@ -17,6 +17,12 @@ hamburgerBtn.addEventListener("click", () => {
   navbar.classList.toggle("open");
 });
 
+// loader handling
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".loader").style.display = "none";
+  document.querySelector(".main-content").style.display = "block";
+});
+
 // // Initial UI setting
 window.addEventListener("load", () => {
   if (!localStorage.getItem("countries")) {
@@ -77,12 +83,12 @@ function showCountries(countries) {
             </div>
             <div class="modal-text">
               <p class="category">
-                Country: <span class="category-info common-name">${
+                Common Name: <span class="category-info common-name">${
                   name.common
                 }</span>
               </p>
               <p class="category">
-                Country: <span class="category-info official-name">${
+                Official Name: <span class="category-info official-name">${
                   name.official
                 }</span>
               </p>

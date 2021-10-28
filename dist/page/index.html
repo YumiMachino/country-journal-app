@@ -34,37 +34,57 @@
     <title>Country Journal App</title>
   </head>
   <body>
-    <nav class="navbar">
-      <div class="hamburger-menu">
-        <div class="line line-1"></div>
-        <div class="line line-2"></div>
-        <div class="line line-3"></div>
+    <div class="loader">
+      <div class="lds-default">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
-      <div class="navbar-menu">
-        <a href="index.html" class="navbar-link">Home</a>
-        <a href="journals.html" class="navbar-link">Journals</a>
-      </div>
-    </nav>
-    <!-- Container -->
-    <div class="container">
-      <h1 class="page-title">Which country have you been to?</h1>
-      <h2 class="page-sub-title">
-        Mark your favorite and write journals while on trip!
-      </h2>
-      <form class="input-detail" id="form">
-        <input type="text" placeholder="Search..." id="search-input" />
-      </form>
-      <div class="filter-toggles">
-        <button class="filter-toggle" id="display-all">Display All</button>
-        <span class="break"> / </span>
-        <button class="filter-toggle" id="show-favorite">Show favorite</button>
-      </div>
-      <!-- Country Container -->
-      <div class="country-container" id="country-container"></div>
     </div>
-    <footer>
-      <p class="footer-text">Designed and developed by Yumi Machino.</p>
-    </footer>
+    <div class="main-content">
+      <nav class="navbar">
+        <div class="hamburger-menu">
+          <div class="line line-1"></div>
+          <div class="line line-2"></div>
+          <div class="line line-3"></div>
+        </div>
+        <div class="navbar-menu">
+          <a href="index.html" class="navbar-link">Home</a>
+          <a href="journals.html" class="navbar-link">Journals</a>
+        </div>
+      </nav>
+      <!-- Container -->
+      <div class="container">
+        <h1 class="page-title">Which country have you been to?</h1>
+        <h2 class="page-sub-title">
+          Mark your favorite and write journals while on trip!
+        </h2>
+        <form class="input-detail" id="form">
+          <input type="text" placeholder="Search..." id="search-input" />
+        </form>
+        <div class="filter-toggles">
+          <button class="filter-toggle" id="display-all">Display All</button>
+          <span class="break"> / </span>
+          <button class="filter-toggle" id="show-favorite">
+            Show favorite
+          </button>
+        </div>
+        <!-- Country Container -->
+        <div class="country-container" id="country-container"></div>
+      </div>
+      <footer>
+        <p class="footer-text">Designed and developed by Yumi Machino.</p>
+      </footer>
+    </div>
     <script src="../js/index.bundle.js"></script>
   </body>
 </html>
