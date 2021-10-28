@@ -217,6 +217,7 @@ export default class UI {
     text.value = journal.text;
   }
 
+
   // return an array of countries
   static getAllCountryNames(allJournals) {
     let countries = [];
