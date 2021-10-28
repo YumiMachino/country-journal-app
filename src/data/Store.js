@@ -18,6 +18,7 @@ export default class Store {
   }
 
   static updateCountries(countries) {
+    console.log("updating");
     localStorage.setItem("countries", JSON.stringify(countries));
   }
 

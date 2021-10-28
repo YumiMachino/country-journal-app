@@ -38,7 +38,7 @@ async function fetchCountries(url) {
 }
 
 function showCountries(countries) {
-  console.log(countries);
+  // console.log(countries);
   let count = 0;
   countries.forEach((country) => {
     const {
@@ -130,6 +130,11 @@ function showCountries(countries) {
     `;
     countryContainer.appendChild(modalEle);
 
+    const randomId = [...Array(100).keys()]
+      .sort(() => Math.random() * 3 - 1)
+      .slice(0, 3)
+      .join("");
+
     const countryObj = new Country(
       count,
       name.common,
@@ -170,10 +175,7 @@ countryContainer.addEventListener("click", (e) => {
   // Toggle favorite
   if (e.target.tagName === "I") {
     const countryId = Number(e.target.id.split("-")[1]);
-    console.log("countryId", countryId);
     let countries = Store.getAllCountries();
-    console.log(countries[countryId]);
-
     if (countries[countryId].favorite) {
       e.target.parentElement.style.color = "#f6e8c9";
       countries[countryId].favorite = false;
@@ -185,19 +187,18 @@ countryContainer.addEventListener("click", (e) => {
   }
 });
 
-// // when toggled, show favorite
-// const displayAll = document.getElementById("display-all");
-// const showFavorite = document.getElementById("show-favorite");
-// displayAll.addEventListener("click", () => {
-//   // local storageからデータフェッチ
-//   const countries = Store.getAllCountries();
-//   UI.displayCountries(countries);
-// });
-// showFavorite.addEventListener("click", () => {
-//   console.log("toggle to showing favorite");
-//   const favorites = Store.getAllFavorites();
-//   UI.displayCountries(favorites);
-// });
+// Toggle display all vs show favorite
+const displayAll = document.getElementById("display-all");
+const showFavorite = document.getElementById("show-favorite");
+displayAll.addEventListener("click", () => {
+  // Fetch from local storage
+  const countries = Store.getAllCountries();
+  UI.displayCountries(countries);
+});
+showFavorite.addEventListener("click", () => {
+  const favorites = Store.getAllFavorites();
+  UI.displayCountries(favorites);
+});
 
 // // UI Class: Handle UI changes
 // class UI {
