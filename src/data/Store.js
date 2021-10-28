@@ -18,7 +18,6 @@ export default class Store {
   }
 
   static updateCountries(countries) {
-    console.log("updating");
     localStorage.setItem("countries", JSON.stringify(countries));
   }
 
@@ -79,9 +78,11 @@ export default class Store {
 
   // unique idにしなければいけない！
   static getNewId() {
-    this.allJournals = Store.getAllJournals();
-    const newId = this.allJournals.length;
-    return newId;
+    const randomId = [...Array(100).keys()]
+      .sort(() => Math.random() * 3 - 1)
+      .slice(0, 3)
+      .join("");
+    return Number(randomId);
   }
 
   static getJournalById(id) {

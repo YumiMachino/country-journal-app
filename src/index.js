@@ -2,6 +2,7 @@ import Country from "./model/Country";
 import Store from "./data/Store";
 import UI from "./UI/UI";
 import { langFormatter, currencyFormatter } from "./component/Formatter";
+import { navbar, hamburgerBtn } from "./component/navbar";
 
 const countryContainer = document.querySelector(".country-container");
 
@@ -11,9 +12,6 @@ UI.countryContainer = countryContainer;
 
 // Data endpoint
 const ALL_COUNTRY_URL = "https://restcountries.com/v3.1/all";
-
-const navbar = document.querySelector(".navbar");
-const hamburgerBtn = document.querySelector(".hamburger-menu");
 
 hamburgerBtn.addEventListener("click", () => {
   navbar.classList.toggle("open");
@@ -130,10 +128,7 @@ function showCountries(countries) {
     `;
     countryContainer.appendChild(modalEle);
 
-    const randomId = [...Array(100).keys()]
-      .sort(() => Math.random() * 3 - 1)
-      .slice(0, 3)
-      .join("");
+    const randomId = Store.getNewId();
 
     const countryObj = new Country(
       count,

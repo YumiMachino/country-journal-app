@@ -107,4 +107,137 @@ export default class UI {
     `;
     this.countryContainer.appendChild(modalEle);
   }
+
+  // Handling Journal Page UI
+
+  // display all emojis
+  static displayEmojis(allJournals) {
+    let emojis = [];
+    allJournals.forEach((journal) => {
+      if (!emojis.includes(journal.emoji)) {
+        emojis.push(journal.emoji);
+      }
+    });
+    this.emojisWrapper.innerHTML = "";
+    emojis.forEach((emoji) => {
+      const emojiItem = document.createElement("SPAN");
+      emojiItem.classList.add("country-emoji");
+      emojiItem.innerHTML = emoji;
+      this.emojisWrapper.append(emojiItem);
+    });
+  }
+
+  // display all journals
+  static displayAllJournals(allJournals) {
+    console.log("displaying all journals....");
+    this.journalWrapper.innerHTML = ``;
+    const countries = UI.getAllCountryNames(allJournals);
+    console.log("country name arr: ", countries);
+    countries.forEach((country) => {
+      const journals = UI.journalsPerCounry(country, allJournals);
+      console.log("journals per counry", journals);
+      UI.addJournalsToContainer(country, journals);
+    });
+  }
+
+  // add journals per country
+  static addJournalsToContainer(country, journals) {
+    const journalContainer = document.createElement("div");
+    journalContainer.classList.add("journal-container");
+    journalContainer.innerHTML = `
+      <div class="journal-country" id="${country}-container">
+            <h1 class="journal-country-name">${country}</h1>
+          </div>
+    `;
+    this.journalWrapper.appendChild(journalContainer);
+    journals.forEach((journal) => {
+      UI.addJournalToContainer(country, journal);
+      UI.addModalToCountainer(country, journal);
+    });
+  }
+  // add one journal to container
+  static addJournalToContainer(country, journal) {
+    const journalEle = document.createElement("div");
+    journalEle.classList.add("journal");
+    journalEle.innerHTML = `
+     <div class="journal-text">
+              <div class="journal-date">${journal.date}</div>
+              <h5 class="journal-title">${journal.title}</h5>
+              <div class="journal-para">
+                ${journal.text}
+              </div>
+              <div class="btn-wrapper">
+                <button id="edit-${journal.id}" class="btn secondary-btn">Edit</button>
+                <button id="delete-${journal.id}" class="btn tertiary-btn">Delete</button>
+              </div>
+            </div>
+    `;
+    const container = document.getElementById(`${country}-container`);
+    container.appendChild(journalEle);
+  }
+
+  // add modal
+  static addModalToCountainer(country, journal) {
+    const modalEle = document.createElement("div");
+    modalEle.classList.add("modal");
+    modalEle.id = `edit-modal-${journal.id}`;
+    modalEle.innerHTML = `
+       <div class="edit-modal-content" data-country="${country}" >
+            <span id="edit-close-${journal.id}" class="modal-close">&times;</span>
+
+            <form>
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  id="title-${journal.id}"
+                  class="form-control"
+                  placeholder="Enter title"
+                />
+              </div>
+              <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" name="date" id="date-${journal.id}" placeholder="Enter date" />
+              </div>
+              <div class="form-group">
+                <label for="body">Body</label>
+                <textarea id="text-${journal.id}" class="textarea" placeholder="Enter text"></textarea>
+              </div>
+            </form>
+            <button class="btn primary-btn save">Save Changes</button>
+          </div>
+     `;
+    this.journalWrapper.appendChild(modalEle);
+    const title = document.getElementById(`title-${journal.id}`);
+    const date = document.getElementById(`date-${journal.id}`);
+    const text = document.getElementById(`text-${journal.id}`);
+    title.value = journal.title;
+    date.value = journal.date;
+    text.value = journal.text;
+  }
+
+  // return an array of countries
+  static getAllCountryNames(allJournals) {
+    let countries = [];
+    allJournals.forEach((journal) => {
+      // if it's not already pushed
+      const lowerJournal = journal.country.toLowerCase();
+      if (!countries.includes(lowerJournal)) {
+        countries.push(lowerJournal);
+      }
+    });
+    return countries;
+  }
+  // return journals based on country input
+  static journalsPerCounry(country, allJournals) {
+    let journals = [];
+    allJournals.forEach((journal) => {
+      const lowerCaseJournal = journal.country.toLowerCase();
+      if (lowerCaseJournal === country) {
+        journals.push(journal);
+      }
+    });
+    return journals;
+  }
 }
