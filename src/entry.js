@@ -92,6 +92,8 @@ UI.journalWrapper = journalWrapper;
 
 // Get initial countries only the first time
 window.addEventListener("load", () => {
+  document.querySelector(".loader").style.display = "none";
+  document.querySelector(".main-content").style.display = "block";
   allJournals = Store.getAllJournals();
   UI.displayAllJournals(allJournals);
   UI.displayEmojis(allJournals);

@@ -17,14 +17,10 @@ hamburgerBtn.addEventListener("click", () => {
   navbar.classList.toggle("open");
 });
 
-// loader handling
-window.addEventListener("DOMContentLoaded", () => {
-  document.querySelector(".loader").style.display = "none";
-  document.querySelector(".main-content").style.display = "block";
-});
-
 // // Initial UI setting
 window.addEventListener("load", () => {
+  document.querySelector(".loader").style.display = "none";
+  document.querySelector(".main-content").style.display = "block";
   if (!localStorage.getItem("countries")) {
     fetchCountries(ALL_COUNTRY_URL);
   } else {

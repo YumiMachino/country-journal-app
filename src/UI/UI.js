@@ -129,10 +129,8 @@ export default class UI {
 
   // display all journals
   static displayAllJournals(allJournals) {
-    console.log("displaying all journals....");
     this.journalWrapper.innerHTML = ``;
     const countries = UI.getAllCountryNames(allJournals);
-    console.log("country name arr: ", countries);
     countries.forEach((country) => {
       const journals = UI.journalsPerCounry(country, allJournals);
       console.log("journals per counry", journals);
